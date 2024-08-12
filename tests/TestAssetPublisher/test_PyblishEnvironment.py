@@ -27,5 +27,11 @@ class TestSetup(TestCase):
         expected = 'path/to/plugin1;path/to/plugin2' if os.name == 'nt' else 'path/to/plugin1:path/to/plugin2'
         self.assertEqual(os.environ['PYBLISHPLUGINPATH'], expected)
 
+    def test_append_to_existing(self):
+        os.environ['PYBLISHPLUGINPATH'] = 'existing/path'
+        PyblishEnvironment.setup()
+        expected = 'path/to/plugin1;path/to/plugin2;existing/path' if os.name == 'nt' else 'path/to/plugin1:path/to/plugin2:existing/path'
+        self.assertEqual(os.environ['PYBLISHPLUGINPATH'], expected)
+
     def tearDown(self):
         self.temp_dir.cleanup()
