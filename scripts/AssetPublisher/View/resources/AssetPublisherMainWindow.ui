@@ -20,6 +20,7 @@
       <property name="title">
        <string>Options</string>
       </property>
+      <layout class="QVBoxLayout" name="vlayout_gb"/>
      </widget>
     </item>
     <item>
@@ -68,10 +69,16 @@
     <property name="title">
      <string>menu</string>
     </property>
+    <addaction name="actionhelp"/>
    </widget>
    <addaction name="menumenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionhelp">
+   <property name="text">
+    <string>help</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
