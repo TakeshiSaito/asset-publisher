@@ -34,4 +34,5 @@ class TestSetup(TestCase):
         self.assertEqual(os.environ['PYBLISHPLUGINPATH'], expected)
 
     def tearDown(self):
+        del os.environ['PYBLISHPLUGINPATH']
         self.temp_dir.cleanup()

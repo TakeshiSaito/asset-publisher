@@ -13,4 +13,7 @@ def setup():
     pyblish_plugin_paths = setting['PYBLISHPLUGINPATH']
     env_value = os.pathsep.join(pyblish_plugin_paths)
 
-    os.environ['PYBLISHPLUGINPATH'] = f'{env_value}{os.pathsep}{os.environ["PYBLISHPLUGINPATH"]}'
+    if 'PYBLISHPLUGINPATH' in os.environ:
+        env_value = f'{env_value}{os.pathsep}{os.environ["PYBLISHPLUGINPATH"]}'
+
+    os.environ['PYBLISHPLUGINPATH'] = env_value
