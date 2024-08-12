@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-from AssetPublisher.model import OptionValue
+from AssetPublisher.Model import OptionValue
 
 
 class OptionNameMissing(Exception):

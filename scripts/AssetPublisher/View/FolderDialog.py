@@ -1,6 +1,6 @@
 from PySide2.QtWidgets import QHBoxLayout, QLineEdit, QPushButton, QLabel
 
-from AssetPublisher.model import OptionValue
+from AssetPublisher.Model import OptionValue
 from AssetPublisher.View.IOptionView import IOptionView, OptionNameMissing
 
 
