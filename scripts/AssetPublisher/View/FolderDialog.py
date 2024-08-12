@@ -1,4 +1,4 @@
-from PySide2.QtWidgets import QHBoxLayout, QLineEdit, QPushButton, QLabel
+from PySide2.QtWidgets import QHBoxLayout, QLineEdit, QPushButton, QLabel, QFileDialog
 
 from AssetPublisher.Model import OptionValue
 from AssetPublisher.View.IOptionView import IOptionView, OptionNameMissing
@@ -18,11 +18,11 @@ class FolderDialog(QHBoxLayout, IOptionView):
 
         label = QLabel()
         self.line_edit_folder_path = QLineEdit()
-        self.button = QPushButton('Select Folder')
+        self.__dialog_btn = QPushButton('Select Folder')
 
         self.addWidget(label)
         self.addWidget(self.line_edit_folder_path)
-        self.addWidget(self.button)
+        self.addWidget(self.__dialog_btn)
 
         label_value = kwargs.get("label", "")
         label.setText(label_value)
@@ -32,6 +32,13 @@ class FolderDialog(QHBoxLayout, IOptionView):
 
         default_value = kwargs.get("default_value", "")
         self.line_edit_folder_path.setText(default_value)
+
+        self.__dialog_btn.clicked.connect(self.open_folder_dialog)
+
+    def open_folder_dialog(self):
+        folder = QFileDialog.getExistingDirectory(None, 'Select Folder')
+        if folder:
+            self.line_edit_folder_path.setText(folder)
 
     @property
     def option_name(self):
