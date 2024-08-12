@@ -45,6 +45,8 @@ class MainWindow(QMainWindow, IMainWindow):
         self.__progress_bar = self.__widget.progressBar
         self.__groupBox_layout: QVBoxLayout = self.__widget.groupBox_options.layout()
 
+        self.__widget.actionhelp.triggered.connect(self.on_help_btn_clicked)
+
         self.__option_uis: List[IOptionView] = []
 
     @property
@@ -91,3 +93,9 @@ class MainWindow(QMainWindow, IMainWindow):
                                     bypass_validation=self.bypass_validation,
                                     update_progress_bar=self.update_progress_bar,
                                     show_confirm_dialog=self.show_confirm_dialog)
+
+    def on_help_btn_clicked(self):
+        import webbrowser
+        project_root = Path(__file__).parent.parent.parent.parent
+        readme_md = project_root / 'README.md'
+        webbrowser.open(readme_md.as_posix())
