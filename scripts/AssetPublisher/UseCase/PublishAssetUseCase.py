@@ -57,5 +57,5 @@ def execute(options: List[OptionValue],
 
     # Report---------------------------------------------------------------------
     report = ContextUtils.get_report(context)
+    update_progress_bar(100, 'Completed')
     show_confirm_dialog('Publish Asset', report)
-    update_progress_bar(100, '')
