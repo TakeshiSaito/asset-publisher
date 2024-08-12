@@ -53,7 +53,8 @@ class MainWindow(QMainWindow, IMainWindow):
 
     @property
     def option_values(self) -> List[OptionValue]:
-        return [ui.get_option_value() for ui in self.__option_uis]
+        values = [ui.get_option_value() for ui in self.__option_uis]
+        return values
 
     def show(self, **options):
 
@@ -71,6 +72,7 @@ class MainWindow(QMainWindow, IMainWindow):
                 raise ValueError(f'Invalid option type: {option[type]}')
 
             self.__groupBox_layout.addLayout(option_ui)
+            self.__option_uis.append(option_ui)
 
         super(MainWindow, self).show()
 
@@ -82,7 +84,13 @@ class MainWindow(QMainWindow, IMainWindow):
         QMessageBox.information(self, title, message, QMessageBox.Ok)
 
     def on_click_publish(self):
-        PublishAssetUseCase.execute(options=self.option_values,
+        try:
+            options = self.option_values
+        except ValueError as e:
+            self.show_confirm_dialog('Error', str(e))
+            return
+
+        PublishAssetUseCase.execute(options=options,
                                     bypass_validation=self.bypass_validation,
                                     update_progress_bar=self.update_progress_bar,
                                     show_confirm_dialog=self.show_confirm_dialog)
