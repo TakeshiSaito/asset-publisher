@@ -20,3 +20,6 @@ def run_main():
     window.show(**options)
 
     sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    run_main()
