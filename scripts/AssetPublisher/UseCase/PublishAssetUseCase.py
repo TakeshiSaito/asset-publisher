@@ -34,7 +34,7 @@ def execute(options: List[OptionValue],
 
     if not bypass_validation:
         validator_results = get_step_results(plugins, context, pyblish.api.ValidatorOrder)
-        if results_contains_error(validator_results):
+        if validator_results and results_contains_error(validator_results):
             report = ContextUtils.get_report(context)
             show_confirm_dialog('Validation Error', report)
             raise ValueError('Error Occurred during Validation')
@@ -45,7 +45,7 @@ def execute(options: List[OptionValue],
     context = pyblish.util.extract(context, plugins)
 
     extractor_results = get_step_results(plugins, context, pyblish.api.ExtractorOrder)
-    if results_contains_error(extractor_results):
+    if extractor_results and results_contains_error(extractor_results):
         report = ContextUtils.get_report(context)
         show_confirm_dialog('Extraction Error', report)
         raise ValueError('Error Occurred during Extraction')
