@@ -10,6 +10,6 @@ def setup():
     with setting_path.open('r') as file:
         setting = json.load(file)
 
-    pyblish_plugin_paths = setting['pyblish_plugin_paths']
+    pyblish_plugin_paths = setting['PYBLISHPLUGINPATH']
     env_value = os.pathsep.join(pyblish_plugin_paths)
     os.environ['PYBLISHPLUGINPATH'] = env_value
