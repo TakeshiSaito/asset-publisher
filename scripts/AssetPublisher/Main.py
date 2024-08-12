@@ -17,7 +17,8 @@ def run_main():
     options = UiOptions.get_options()
 
     window = MainWindow()
-    window.show(**options)
+    window.setup(options)
+    window.show()
 
     sys.exit(app.exec_())
 
