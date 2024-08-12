@@ -5,7 +5,7 @@ from tempfile import TemporaryDirectory
 import os
 import json
 
-from AssetPublisher import ui_options
+from AssetPublisher import UiOptions
 
 
 class TestUiOptions(TestCase):
@@ -33,7 +33,7 @@ class TestUiOptions(TestCase):
         os.environ['ASSET_PUBLISHER_RESOURCE_PATH'] = self.temp_dir.name
 
     def test_get_options(self):
-        setting = ui_options.get_options()
+        setting = UiOptions.get_options()
         self.assertEqual(len(setting), 2)
 
         self.assertEqual(setting['root']['type'], 'folder_dialog')
