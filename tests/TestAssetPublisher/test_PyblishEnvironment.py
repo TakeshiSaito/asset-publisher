@@ -3,7 +3,7 @@ from tempfile import TemporaryDirectory
 from pathlib import Path
 import os
 import json
-from AssetPublisher import environment
+from AssetPublisher import PyblishEnvironment
 
 
 class TestSetup(TestCase):
@@ -13,7 +13,7 @@ class TestSetup(TestCase):
         os.environ['ASSET_PUBLISHER_RESOURCE_PATH'] = self.temp_dir.name
 
         test_setting_content = {
-            'pyblish_plugin_paths': [
+            'PYBLISHPLUGINPATH': [
                 'path/to/plugin1',
                 'path/to/plugin2'
             ]
@@ -23,9 +23,16 @@ class TestSetup(TestCase):
             json.dump(test_setting_content, file)
 
     def test_environment(self):
-        environment.setup()
+        PyblishEnvironment.setup()
         expected = 'path/to/plugin1;path/to/plugin2' if os.name == 'nt' else 'path/to/plugin1:path/to/plugin2'
         self.assertEqual(os.environ['PYBLISHPLUGINPATH'], expected)
 
+    def test_append_to_existing(self):
+        os.environ['PYBLISHPLUGINPATH'] = 'existing/path'
+        PyblishEnvironment.setup()
+        expected = 'path/to/plugin1;path/to/plugin2;existing/path' if os.name == 'nt' else 'path/to/plugin1:path/to/plugin2:existing/path'
+        self.assertEqual(os.environ['PYBLISHPLUGINPATH'], expected)
+
     def tearDown(self):
+        del os.environ['PYBLISHPLUGINPATH']
         self.temp_dir.cleanup()

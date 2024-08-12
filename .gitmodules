@@ -1,0 +1,3 @@
+[submodule "bin/pyblish"]
+	path = bin/pyblish
+	url = git@github.com:pyblish/pyblish-base.git

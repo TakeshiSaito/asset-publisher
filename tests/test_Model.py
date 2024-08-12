@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from AssetPublisher.model import OptionValue
+from AssetPublisher.Model import OptionValue
 
 
 class TestOptionValue(TestCase):

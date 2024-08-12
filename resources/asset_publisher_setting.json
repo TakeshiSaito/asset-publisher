@@ -21,26 +21,9 @@
         "model",
         "rig"
       ]
-    },
-    "asset_type": {
-      "type": "radio",
-      "label": "Asset type",
-      "variants": [
-        "hero",
-        "proxy"
-      ]
-    },
-    "extensions": {
-      "type": "radio",
-      "label": "Extensions",
-      "variants": [
-        "ma",
-        "mb"
-      ]
     }
   },
   "PYBLISHPLUGINPATH": [
-    "C:/Users",
-    "D:/Users"
+    "path/to/pyblish_plugins/folder"
   ]
 }
