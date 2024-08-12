@@ -24,12 +24,12 @@ def execute(options: List[OptionValue],
 
     # Collection---------------------------------------------------------------------
 
-    update_progress_bar(1 / 4, 'Collecting')
+    update_progress_bar(0 / 4 * 100, 'Collecting')
     context = pyblish.util.collect(context, plugins)
 
     # Validation---------------------------------------------------------------------
 
-    update_progress_bar(2 / 4, 'Validating')
+    update_progress_bar(1 / 4 * 100, 'Validating')
     context = pyblish.util.validate(context, plugins)
 
     if not bypass_validation:
@@ -41,7 +41,7 @@ def execute(options: List[OptionValue],
 
     # Extraction---------------------------------------------------------------------
 
-    update_progress_bar(3 / 4, 'Extracting')
+    update_progress_bar(2 / 4 * 100, 'Extracting')
     context = pyblish.util.extract(context, plugins)
 
     extractor_results = get_step_results(plugins, context, pyblish.api.ExtractorOrder)
@@ -52,10 +52,10 @@ def execute(options: List[OptionValue],
 
     # Integration---------------------------------------------------------------------
 
-    update_progress_bar(4 / 4, 'Integrating')
+    update_progress_bar(3 / 4 * 100, 'Integrating')
     context = pyblish.util.integrate(context, plugins)
 
     # Report---------------------------------------------------------------------
     report = ContextUtils.get_report(context)
     show_confirm_dialog('Publish Asset', report)
-    update_progress_bar(0, '')
+    update_progress_bar(100, '')
