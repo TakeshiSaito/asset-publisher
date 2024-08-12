@@ -1,0 +1,46 @@
+{
+  "ui_options": {
+    "root": {
+      "type": "folder_dialog",
+      "label": "Project root",
+      "placeholder_text": "Select project root",
+      "default_value": "",
+      "required": true
+    },
+    "file_name": {
+      "type": "line_edit",
+      "label": "File name",
+      "placeholder_text": "Enter file name",
+      "default_value": "",
+      "required": true
+    },
+    "departments": {
+      "type": "radio",
+      "label": "Departments",
+      "variants": [
+        "model",
+        "rig"
+      ]
+    },
+    "asset_type": {
+      "type": "radio",
+      "label": "Asset type",
+      "variants": [
+        "hero",
+        "proxy"
+      ]
+    },
+    "extensions": {
+      "type": "radio",
+      "label": "Extensions",
+      "variants": [
+        "ma",
+        "mb"
+      ]
+    }
+  },
+  "PYBLISHPLUGINPATH": [
+    "C:/Users",
+    "D:/Users"
+  ]
+}
