@@ -25,7 +25,7 @@ class RadioButtons(QHBoxLayout, IOptionView):
         self.addWidget(label)
 
         try:
-            options = kwargs["options"]
+            options = kwargs["variants"]
         except KeyError:
             raise NeedOptionsError("options are required.")
 
