@@ -37,7 +37,7 @@ class MainWindow(QMainWindow, IMainWindow):
         self.setCentralWidget(self.__widget)
         self.resize(400, 313)
 
-        self.__widget.setWindowTitle('Asset Publisher')
+        self.setWindowTitle('Asset Publisher')
 
         self.__widget.btn_publish.clicked.connect(self.on_click_publish)
 
@@ -56,8 +56,7 @@ class MainWindow(QMainWindow, IMainWindow):
         values = [ui.get_option_value() for ui in self.__option_uis]
         return values
 
-    def show(self, **options):
-
+    def setup(self, options: dict):
         for option_name, value in options.items():
             option = value.copy()
             option['option_name'] = option_name
@@ -73,8 +72,6 @@ class MainWindow(QMainWindow, IMainWindow):
 
             self.__groupBox_layout.addLayout(option_ui)
             self.__option_uis.append(option_ui)
-
-        super(MainWindow, self).show()
 
     def update_progress_bar(self, value: int, status: str):
         self.__progress_bar.setValue(value)
